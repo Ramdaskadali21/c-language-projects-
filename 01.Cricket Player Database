@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <string.h>
+
+// Structure to store information about a cricket player
+struct Player {
+    char name[50];
+    int matchesPlayed;
+    int runsScored;
+    int wicketsTaken;
+};
+
+// Function to accept player information
+void inputPlayerInfo(struct Player players[], int n) {
+    int i;
+    for (i = 0; i < n; ++i) {
+        printf("\nEnter information for player %d:\n", i + 1);
+        printf("Name: ");
+        scanf("%s", players[i].name);
+        printf("Number of matches played: ");
+        scanf("%d", &players[i].matchesPlayed);
+        printf("Runs scored: ");
+        scanf("%d", &players[i].runsScored);
+        printf("Wickets taken: ");
+        scanf("%d", &players[i].wicketsTaken);
+    }
+}
+
+// Function to display all player information
+void displayAllPlayers(struct Player players[], int n) {
+    int i;
+    printf("\nPlayer Information:\n");
+    printf("%-20s %-20s %-20s %-20s\n", "Name", "Matches Played", "Runs Scored", "Wickets Taken");
+    for (i = 0; i < n; ++i) {
+        printf("%-20s %-20d %-20d %-20d\n", players[i].name, players[i].matchesPlayed, players[i].runsScored, players[i].wicketsTaken);
+    }
+}
+
+// Function to find and display player with the most runs
+void displayPlayerWithMostRuns(struct Player players[], int n) {
+    int i, maxRunsIndex = 0;
+    for (i = 1; i < n; ++i) {
+        if (players[i].runsScored > players[maxRunsIndex].runsScored) {
+            maxRunsIndex = i;
+        }
+    }
+
+    printf("\nPlayer with the most runs:\n");
+    printf("%-20s %-20s %-20s %-20s\n", "Name", "Matches Played", "Runs Scored", "Wickets Taken");
+    printf("%-20s %-20d %-20d %-20d\n", players[maxRunsIndex].name, players[maxRunsIndex].matchesPlayed, players[maxRunsIndex].runsScored, players[maxRunsIndex].wicketsTaken);
+}
+
+// Function to find and display player with the most wickets
+void displayPlayerWithMostWickets(struct Player players[], int n) {
+    int i, maxWicketsIndex = 0;
+    for (i = 1; i < n; ++i) {
+        if (players[i].wicketsTaken > players[maxWicketsIndex].wicketsTaken) {
+            maxWicketsIndex = i;
+        }
+    }
+
+    printf("\nPlayer with the most wickets:\n");
+    printf("%-20s %-20s %-20s %-20s\n", "Name", "Matches Played", "Runs Scored", "Wickets Taken");
+    printf("%-20s %-20d %-20d %-20d\n", players[maxWicketsIndex].name, players[maxWicketsIndex].matchesPlayed, players[maxWicketsIndex].runsScored, players[maxWicketsIndex].wicketsTaken);
+}
+
+int main() {
+    // Number of players
+    int n = 10;
+
+    // Array to store player information
+    struct Player players[n];
+
+    // Accept player information
+    inputPlayerInfo(players, n);
+
+    // Display all player information
+    displayAllPlayers(players, n);
+
+    // Display player with the most runs
+    displayPlayerWithMostRuns(players, n);
+
+    // Display player with the most wickets
+    displayPlayerWithMostWickets(players, n);
+
+    return 0;
+}
